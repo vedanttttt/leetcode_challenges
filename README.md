@@ -3,5 +3,5 @@ This is my repository for Daily Leetcode challenges . Here I paste solutions in 
 
 # May LeetCode Challenges
 
-## Flood Fill Question
-[Solution](../master/Flood Fill)
+### Flood Fill Question
+[Solution](./Flood Fill)
