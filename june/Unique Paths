@@ -1,0 +1,15 @@
+class Solution {
+    public int uniquePaths(int m, int n) {
+         Integer[][] arr = new Integer[m+1][n+1];
+          return findPath(arr,m,n);
+    }
+    
+    public int findPath(Integer[][] arr,int m,int n){
+        if(m==1 || n==1)
+            return 1;
+        if(arr[m][n] ==null){
+           arr[m][n]= findPath(arr,m,n-1)+findPath(arr,m-1,n);
+        }
+       return arr[m][n];
+    }
+}
