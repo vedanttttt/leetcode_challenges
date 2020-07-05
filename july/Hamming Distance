@@ -6,6 +6,7 @@ class Solution {
             count += result & 1;
             result = result >> 1;
         }
+        
         return count;
     }
 }
