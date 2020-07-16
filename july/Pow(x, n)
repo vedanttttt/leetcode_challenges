@@ -1,0 +1,31 @@
+class Solution {
+    public double myPow(double x, int n) {
+      /*  if(n<0){
+           // return 1/(Math.pow(x,Math.abs(n)));
+            double y = Math.pow(x,Math.abs(n));
+            if(y==(int)0)
+                return 0.00000;
+            else
+                return 1/y;
+        }
+        else
+            return Math.pow(x,n);*/
+        //Above method will also work 
+        //              OR
+        
+        return power(x,n);
+    }
+    public double power(double x,long n){
+        if(n==0)
+            return 1.0;
+        if(n==1)
+            return x;
+        if(n<0)
+            return power(1/x,-n);
+        
+        double result=power(x*x,n/2);
+        if(n%2!=0)
+            result *= x;
+        return result;
+    }
+}
