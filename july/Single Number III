@@ -1,0 +1,19 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            if(set.contains(nums[i]))
+                set.remove(nums[i]);
+            else
+                set.add(nums[i]);
+        }
+        int[] ans=new int[2];
+        Iterator<Integer> it = set.iterator();
+        int i=0;
+        while(it.hasNext()){
+            ans[i]=it.next();
+            i++;
+        }
+        return ans;
+    }
+}
