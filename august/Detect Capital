@@ -1,0 +1,14 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+       // String str = word.toLowerCase();
+        if(word.length()==1)
+            return true;
+        if((word.substring(1)).equals((word.substring(1)).toLowerCase()))
+            return true;
+        
+        if(word.equals(word.toUpperCase()))
+            return true;
+        
+        return false;
+    }
+}
