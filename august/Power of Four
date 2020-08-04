@@ -1,0 +1,9 @@
+class Solution {
+    public boolean isPowerOfFour(int num) {
+        double res = Math.log(num)/Math.log(4);
+        if(res==(int)res)
+            return true;
+        else
+            return false;
+    }
+}
