@@ -1,0 +1,11 @@
+class Solution {
+    public int titleToNumber(String s) {
+        int res=0;
+        int c=0;
+        for(int i=s.length()-1;i>=0;i--){
+            res += (s.charAt(i)-64)*(Math.pow(26,c));
+            c++;
+        }
+        return res;
+    }
+}
