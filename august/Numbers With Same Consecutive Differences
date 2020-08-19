@@ -1,0 +1,23 @@
+class Solution {
+    public int[] numsSameConsecDiff(int N, int K) {
+        List<Integer> list = new ArrayList<>();
+        if(N==1)
+            list.add(0);
+        for(int i=1;i<=9;i++){
+            dfs(i,N-1,K,list);
+        }
+        return list.stream().mapToInt(i->i).toArray();
+    }
+    
+    public void dfs(int num,int N,int K,List<Integer> list){
+        if(N==0){
+            list.add(num);
+            return ;
+        }
+        int last_digit=num%10;
+        if(last_digit>=K)
+            dfs(num*10 + last_digit -K,N-1,K,list);
+        if(K>0 && (num%10+K)<=9)
+            dfs(num*10 + last_digit +K,N-1,K,list);
+    }
+}
