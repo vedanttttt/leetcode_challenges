@@ -1,0 +1,28 @@
+class Solution {
+    public String getHint(String secret, String guess) {
+        int b=0,c=0;
+        char[] ar = secret.toCharArray();
+        char[] ar1 = guess.toCharArray();
+        for(int i=0;i<ar1.length;i++){
+            if(ar[i]==ar1[i]){
+                b++;
+                ar[i]='a';
+                ar1[i]='a';
+            }
+        }
+
+        String s2 = String.valueOf(ar1);
+        for(int i=0;i<s2.length();i++){
+            char ch = s2.charAt(i);
+            if(ch=='a')
+                continue;
+            secret = String.valueOf(ar);
+            if(secret.contains(ch+"")){
+                int j = secret.indexOf(ch+"");
+                c++;
+                ar[j]='a';
+            }
+        }
+        return b+"A"+c+"B";
+    }
+}
