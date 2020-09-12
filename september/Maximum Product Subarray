@@ -1,0 +1,21 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int n =nums.length;
+        if(n==0)
+            return -1;
+        
+        int minProd = nums[0];
+        int maxProd = nums[0];
+        int ans = nums[0];
+        int choice1,choice2;
+        
+        for(int i=1;i<n;i++){
+            choice1 = minProd*nums[i];
+            choice2 = maxProd*nums[i];
+            minProd = Math.min(nums[i],Math.min(choice1,choice2));
+            maxProd = Math.max(nums[i],Math.max(choice1,choice2));
+            ans = Math.max(ans,maxProd);
+        }
+        return ans;
+    }
+}
