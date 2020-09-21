@@ -1,0 +1,39 @@
+class Solution {
+    public int uniquePathsIII(int[][] grid) {
+        int zero=0,sx=0,sy=0;
+        for(int r=0;r<grid.length;r++){
+            for(int c=0;c<grid[0].length;c++){
+                if(grid[r][c]==0)
+                    zero++;
+                else if(grid[r][c]==1){
+                    sx=r;
+                    sy=c;
+                }
+            }
+        }
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        return dfs(grid,zero,visited,sx,sy);
+    }
+    
+    public int dfs(int[][] grid,int zero,boolean[][] visited,int x,int y){
+        
+        if(x<0 || y<0 || x>=grid.length || y>=grid[0].length || visited[x][y]==true || grid[x][y]==-1)
+            return 0;
+        
+        if(grid[x][y]==2){
+            return zero==-1 ? 1 : 0;
+        }
+        
+        visited[x][y]=true;
+        zero--;
+        int totalPaths = dfs(grid,zero,visited,x-1,y) + 
+                         dfs(grid,zero,visited,x,y+1) + 
+                         dfs(grid,zero,visited,x+1,y) +
+                         dfs(grid,zero,visited,x,y-1);
+        
+        visited[x][y]=false;
+        zero++;
+        
+        return totalPaths;
+    }
+}
