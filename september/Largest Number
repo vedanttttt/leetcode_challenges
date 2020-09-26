@@ -1,0 +1,30 @@
+class Solution {
+    public String largestNumber(int[] nums) {
+        if(nums.length==0)
+            return "";
+        
+        String strArray[] = Arrays.stream(nums).mapToObj(String::valueOf).toArray(String[]::new);
+        
+        Arrays.sort(strArray,new Method());
+        
+        if(strArray[0].equals("0")) //this means all the elements of array are zero, so we check if last element is zero or not
+            return "0";
+        
+        String ans="";
+        for(int i=0;i<strArray.length;i++){
+            ans += strArray[i];
+        }
+        return ans;
+    }
+}
+
+class Method implements Comparator<String>{
+    
+    public int compare(String num1,String num2){
+        
+        String s1 = num1+num2;
+        String s2 = num2+num1;
+        
+        return s2.compareTo(s1);
+    }
+}
