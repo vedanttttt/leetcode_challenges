@@ -1,0 +1,28 @@
+class Solution {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        
+        if(nums.length==1)
+            return nums[0];
+        if(nums.length==2)
+            return Math.max(nums[0],nums[1]);
+        
+        int sum1=robber(nums,dp,0,n-2);
+        int sum2=robber(nums,dp,1,n-1);
+        
+        return Math.max(sum1,sum2);
+    }
+    
+    public int robber(int[] nums,int[] dp,int l,int h){
+        
+        dp[l]=nums[l];
+        dp[l+1]=Math.max(dp[l],nums[l+1]);
+        
+        for(int i=l+2;i<=h;i++){
+            dp[i]=Math.max(dp[i-2]+nums[i],dp[i-1]);
+        }
+        
+        return dp[h];
+    }
+}
