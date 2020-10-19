@@ -1,0 +1,29 @@
+class Solution {
+    Integer[][][] dp;
+    public int maxProfit(int k, int[] prices) {
+        
+        //to handle case where unlimited transactions can be made ,also to prevent memory limit exceeded error 
+        if(k>= prices.length/2){
+            int maxProfit=0;
+            for(int i=1;i<prices.length;i++){
+                if(prices[i] > prices[i-1])
+                    maxProfit += prices[i]-prices[i-1];
+            }
+            return maxProfit;
+        }
+        
+        dp = new Integer[prices.length+1][k+1][2];
+        return helper(prices,0,1,0,k);
+    }
+    
+    public int helper(int[] prices,int i,int buy,int tx,int k){
+        if(i>=prices.length || tx>=k)
+            return 0;
+        if(dp[i][tx][buy] != null)
+            return dp[i][tx][buy];
+        if(buy==1)
+            return dp[i][tx][buy] = Math.max(-prices[i] + helper(prices,i+1,0,tx,k), helper(prices,i+1,buy,tx,k));
+        else
+            return dp[i][tx][buy] = Math.max(prices[i] + helper(prices,i+1,1,tx+1,k), helper(prices,i+1,buy,tx,k));
+    }
+}
