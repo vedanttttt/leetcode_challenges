@@ -1,0 +1,25 @@
+class Solution {
+    public int bagOfTokensScore(int[] tokens, int P) {
+        int i=0;
+        int j = tokens.length-1;
+        int maxScore=0;
+        int currScore=0;
+        
+        Arrays.sort(tokens);
+        
+        while(i<=j){
+            if(tokens[i]<=P){
+                currScore++;
+                P -= tokens[i++];
+                maxScore = Math.max(currScore,maxScore);
+            }
+            else if(currScore > 0){
+                currScore--;
+                P += tokens[j--];
+            }
+            else
+                return maxScore;
+        }
+        return maxScore;
+    }
+}
