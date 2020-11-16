@@ -1,0 +1,35 @@
+class Solution {
+    public int longestMountain(int[] A) {
+        if(A.length<3)
+            return 0;
+        
+        int[] len = new int[A.length];
+        int max=0;
+        int slope=-1;
+        boolean bool=false;
+        Arrays.fill(len,1);
+        
+        for(int i=1;i<A.length;i++){
+            if(A[i]>A[i-1]){
+                if(slope<0){
+                    len[i]=2;
+                }
+                else{
+                    len[i]=len[i-1]+1;
+                }
+                slope=1;
+            }
+            if(A[i]<A[i-1] && len[i-1]>=2){
+                len[i]=len[i-1]+1;
+                bool=true;
+                slope=-1;
+            }
+            if(bool){
+                bool=false;
+                max = Math.max(max,len[i]);
+            }
+        }
+        
+        return max;
+    }
+}
