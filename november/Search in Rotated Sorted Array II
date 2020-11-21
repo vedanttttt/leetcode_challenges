@@ -1,0 +1,56 @@
+class Solution {
+    public boolean search(int[] nums, int target) {
+        if(nums.length<1)
+            return false;
+        if(nums.length==1){
+            if(nums[0]==target)
+                return true;
+            else
+                return false;
+        }
+        
+        int n = nums.length;
+        int l=0;
+        int r=n-1;
+        int index=-1;
+        while(l<r){
+            if(nums[l+1]<nums[l]){
+                index=l;
+                break;
+            }
+            else if(nums[r-1]>nums[r]){
+                index=r-1;
+                break;
+            }
+            l++;
+            r--;
+        }
+        
+        int l1=0,l2=index+1,r1=index,r2=n-1;
+        
+        while(l1<=r1){
+            int mid=l1 + (r1-l1)/2 ;
+            if(nums[mid]==target)
+                return true;
+            else if(nums[mid]>target){
+                r1=mid-1;
+            }
+            else
+                l1=mid+1;
+        }
+        
+        System.out.println(l1 + " " + l2 + " " + r1 + " " + r2);
+        while(l2<=r2){
+            int mid=l2 + (r2-l2)/2 ;
+            if(nums[mid]==target)
+                return true;
+            else if(nums[mid]>target){
+                r2=mid-1;
+            }
+            else
+                l2=mid+1;
+        }
+        
+        return false;
+    }
+}
