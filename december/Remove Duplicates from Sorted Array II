@@ -1,0 +1,30 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if(nums.length<3)
+            return nums.length;
+        
+        int len=0;
+        int c=0;
+        int ref = -10001;
+        
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>ref){
+                ref=nums[i];
+                c=1;
+                len++;
+            }
+            else if(nums[i]==ref){
+                if(c==2){
+                    nums[i]=10001;
+                }
+                else{
+                    c++;
+                    len++;
+                }
+            }
+        }
+        
+        Arrays.sort(nums);
+        return len;
+    }
+}
