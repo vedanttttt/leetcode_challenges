@@ -1,0 +1,19 @@
+class Solution {
+    public boolean canFormArray(int[] arr, int[][] pieces) {
+        int ar[] = new int[101];
+        int n = arr.length;
+        for(int i=0;i<n;i++){
+            ar[arr[i]]=i+1;
+        }
+        
+        for(int[] piece : pieces){
+            if(ar[piece[0]]==0) return false;
+            for(int i=1;i<piece.length;i++){
+                if(ar[piece[i]] - ar[piece[i-1]] != 1)
+                    return false;
+            }
+        }
+        
+        return true;
+    }
+}
