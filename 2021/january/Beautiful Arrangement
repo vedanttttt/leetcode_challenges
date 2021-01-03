@@ -1,0 +1,37 @@
+class Solution {
+    int count=0;
+    public int countArrangement(int n) {
+        List<Integer> l = new ArrayList<>();
+        boolean[] visited = new boolean[n];
+        permute(l,n,visited);
+        return count;
+    }
+    
+    public void permute(List<Integer> l,int n,boolean[] visited){
+        if(l.size() == n){
+            count++;
+        }
+        
+        for(int i=1;i<=n;i++){
+            if(visited[i-1])
+                continue;
+            l.add(i);
+            visited[i-1]=true;
+            int e = l.size();
+            if(e%i ==0 || i%e ==0)
+                permute(l,n,visited);
+            l.remove(l.size()-1);
+            visited[i-1]=false;
+        }
+    }
+    
+//     public boolean isValid(List<Integer> l){
+//         for(int i=0;i<l.size();i++){
+//             int e = l.get(i);
+//             if(e%(i+1) !=0 && (i+1)%e !=0)
+//                 return false;
+//         }
+        
+//         return true;
+//     }
+}
