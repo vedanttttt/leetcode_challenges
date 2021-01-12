@@ -1,0 +1,25 @@
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int l = 0,r=0;
+        int len=m+n;
+        
+        while(l<len && r<n){
+            if(nums2[r]<nums1[l] || m==0){
+                insert(nums1,len,l,nums2[r]);
+                r++;
+                l++;
+            }
+            else{
+                l++;
+                m--;
+            }
+        }
+    }
+    
+    public void insert(int[] nums,int n,int index,int val){
+        for(int i=n-1;i>index;i--){
+            nums[i]=nums[i-1];
+        }
+        nums[index]=val;
+    }
+}
