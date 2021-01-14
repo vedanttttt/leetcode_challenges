@@ -1,0 +1,40 @@
+class Solution {
+    public int numRescueBoats(int[] people, int limit) {
+        int count=0;
+        int size=0;
+        int num=0;
+        Arrays.sort(people);
+        
+        int l = 0,h=people.length-1;
+        
+        while(l<=h){
+            if(l==h){
+                count++;
+                break;
+            }
+            if(people[l]+people[h]<=limit){
+                count++;
+                l++;
+                h--;
+            }
+            else{
+                count++;
+                h--;
+            }
+        }
+        
+        // for(int i=0;i<people.length;i++){
+        //     if(size+people[i] <=limit && num+1<=2){
+        //         size=size+people[i];
+        //         num++;
+        //     }
+        //     else{
+        //         count++;
+        //         size=people[i];
+        //         num=1;
+        //     }
+        // }
+        
+        return count;
+    }
+}
