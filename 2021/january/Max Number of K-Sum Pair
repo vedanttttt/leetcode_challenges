@@ -1,0 +1,52 @@
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+        
+        //         List<Integer> l = new ArrayList<>();
+//         int count=0;
+        
+//         for(int e:nums){
+//             int dif = k-e;
+//             if(l.contains(dif)){
+//                 l.remove(new Integer(dif));
+//                 count++;
+//             }
+//             else
+//                 l.add(e);
+//         }
+        
+//         return count;
+        
+//         Map<Integer,Integer> map = new HashMap<>();
+//         int count=0;
+        
+//         for(int n:nums){
+//             if(map.containsKey(k-n) && map.get(k-n)>0){
+//                 count++;
+//                 map.put(k-n,map.get(k-n)-1);
+//             }
+//             else
+//                 map.put(n,map.getOrDefault(n,0)+1);
+//         }
+        
+//         return count;
+        
+        Arrays.sort(nums);
+        int l=0,h=nums.length-1;
+        int count=0;
+        
+        while(l<h){
+            int sum=nums[l]+nums[h];
+            if(sum==k){
+                count++;
+                l++;
+                h--;
+            }
+            else if(sum>k)
+                h--;
+            else
+                l++;
+        }
+        
+        return count;
+    }
+}
