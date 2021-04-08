@@ -1,0 +1,27 @@
+class Solution {
+    public boolean halvesAreAlike(String s) {
+        int count1=0,count2=0;
+        int n = s.length();
+        int p1=0,p2=n/2;
+        while(p1<n/2){
+            if(isVowel(s.charAt(p1)))
+                count1++;
+            p1++;
+        }
+        while(p2<n){
+            if(isVowel(s.charAt(p2)))
+                count2++;
+            p2++;
+        }
+        
+        return count1==count2;
+    }
+    
+    public boolean isVowel(Character c){
+        if(!Character.isLowerCase(c))
+            c = (char)(c+32);
+        if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u')
+            return true;
+        return false;
+    }
+}
